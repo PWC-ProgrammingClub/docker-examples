@@ -1,0 +1,17 @@
+FROM mysql:8.0.33 AS base1
+
+ARG username
+ARG password
+ARG database
+ARG date
+
+ENV MYSQL_DATABASE=$database
+ENV MYSQL_ROOT_USER=$username
+ENV MYSQL_ROOT_PASSWORD=$password
+
+FROM base1
+
+# the sql files in this folder will be automatically executed in alphabetical order to populate the database
+COPY ./.docker/mysql/. docker-entrypoint-initdb.d/
+
+EXPOSE 3306
