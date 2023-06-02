@@ -56,7 +56,7 @@ db.image:
 	docker build -t $(mysql_image) \
 	--build-arg username=$(db_username) \
 	--build-arg password=$(db_password) \
-	--build-arg databaseb=$(db) \
+	--build-arg database=$(db) \
 	--build-arg date=$(db_date) -f ./Dockerfile.mysql .
 
 # 'database run' runs the mysql docker container from the image that was built.
@@ -97,7 +97,7 @@ php.image:
 
 # 'php run' runs a php docker container from the image that was built. It also mounts .docker/php as a volume.
 php.run:
-	docker run -p $(php_port):80 --name $(php_container) -d $(php_image)
+	docker run -p $(php_port):80 --na6me $(php_container) -d $(php_image)
 
 # 'php remove' removes the php docker container
 php.rm:
