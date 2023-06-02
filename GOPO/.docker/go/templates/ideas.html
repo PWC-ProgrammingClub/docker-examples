@@ -1,0 +1,67 @@
+<html>
+  <style>
+  body {
+    display: flex;
+    align-Content: center;
+    align-Items: center;
+    background-color: lightblue;
+    flex-direction: column;
+  }
+  td {
+    padding: 10px;
+    border: 1px dotted white;
+  }
+  .errmsg {
+    color: crimson;
+  }
+  form {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    position: fixed;
+    background-color: white;
+    border: 1px solid gray;
+    flex-direction: column;
+    right: 0px;
+    top: 100px;
+  }
+  </style>
+  <body>
+  <h1>{{ .Title }}</h1>
+  <p class="errmsg">{{ .Error }}</p>
+  <p>Number of ideas: {{ .Ideas | len }}</p>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Category</th>
+      <th>Description</th>
+    </tr>
+    {{ range .Ideas}}
+    <tr>
+      <td>{{.Id}}</td>
+      <td>{{.Category}}</td>
+      <td>{{.Description}}</td>
+    </tr>
+    {{ end }}
+  </table>
+  <form action="/" method="POST">
+    <h3>Add Idea</h3>
+    <div>
+      <label for="Category">Category</label>
+      <select name="Category">
+        <option value="project">project</option>
+        <option value="event">event</option>
+        <option value="misc">misc</option>
+      </select>
+    </div>
+    <div>
+      <label for="Description">Description</label>
+      <textarea name="Description"></textarea>
+    </div>
+    <div>
+      <input type="submit" name="SUBMIT"></input>
+    </div>
+  </form>
+  </body>
+</html>
